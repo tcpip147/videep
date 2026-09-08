@@ -1,0 +1,57 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "videep"
+version = "0.1.0"
+description = "백엔드 중립 GPU 상주 비디오 파이프라인"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3", "pytest-asyncio>=0.24", "pyperf>=2.7", "ruff>=0.8", "mypy>=1.13"]
+nvidia = ["PyNvVideoCodec>=2.2,<3"]
+vehicle-example = ["torch>=2.5", "torchvision>=0.29", "ultralytics>=8.3"]
+
+[project.scripts]
+videep = "videep.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/videep"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra --strict-markers"
+markers = [
+  "gpu: 실제 GPU와 드라이버가 필요한 테스트",
+  "performance: 장시간 또는 성능 측정 테스트",
+]
+asyncio_mode = "auto"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "plugins", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+mypy_path = "src"
+
+[[tool.mypy.overrides]]
+module = ["torch", "torch.*", "torchvision", "torchvision.*", "ultralytics", "ultralytics.*"]
+ignore_missing_imports = true
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu130" }
+torchvision = { index = "pytorch-cu130" }

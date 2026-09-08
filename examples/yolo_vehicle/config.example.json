@@ -1,0 +1,16 @@
+{
+  "detector_model": "examples/yolo_vehicle/models/yolo-vehicle.pt",
+  "device_id": "0",
+  "detection_confidence": 0.35,
+  "classification_confidence": 0.6,
+  "iou_threshold": 0.45,
+  "max_vehicles": 32,
+  "target_classes": ["car", "bus", "truck"],
+  "min_crop_size": 16,
+  "box_colors": {
+    "소형": [0, 255, 0],
+    "중형": [255, 200, 0],
+    "대형": [255, 0, 0],
+    "미분류": [160, 160, 160]
+  }
+}

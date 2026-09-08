@@ -1,0 +1,21 @@
+{
+  "input_uri": "rtsp://camera.example/live",
+  "output_uri": "rtsp://localhost:8554/vehicles",
+  "backend": "nvidia",
+  "device_id": "0",
+  "algorithms": {
+    "preprocess": {
+      "reference": "examples.yolo_vehicle.preprocess:Plugin",
+      "options": {"config_path": "examples/yolo_vehicle/config.json"}
+    },
+    "inference": {
+      "reference": "examples.yolo_vehicle.inference:Plugin",
+      "options": {"config_path": "examples/yolo_vehicle/config.json"}
+    },
+    "postprocess": {
+      "reference": "examples.yolo_vehicle.postprocess:Plugin",
+      "options": {"config_path": "examples/yolo_vehicle/config.json"}
+    }
+  },
+  "queue_capacity": 4
+}

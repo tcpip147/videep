@@ -1,0 +1,12 @@
+{
+  "input_uri": "rtsp://user:password@camera.example/live",
+  "output_uri": "rtsp://publisher:password@server.example/channel",
+  "backend": "nvidia",
+  "device_id": "0",
+  "algorithms": {
+    "preprocess": "plugins.preprocess:Plugin",
+    "inference": "plugins.inference:Plugin",
+    "postprocess": "plugins.postprocess:Plugin"
+  },
+  "queue_capacity": 4
+}
