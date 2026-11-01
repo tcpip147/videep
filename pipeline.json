@@ -1,6 +1,6 @@
 {
   "input_uri": "rtsp://210.99.70.120:1935/live/cctv001.stream",
-  "output_uri": "rtsp://localhost:8554/cctv002",
+  "output_uri": "rtsp://localhost:8554/cctv001",
   "backend": "nvidia",
   "device_id": "0",
   "algorithms": {
