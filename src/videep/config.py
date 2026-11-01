@@ -68,6 +68,7 @@ class PipelineConfig:
     device_id: str
     algorithms: AlgorithmReferences
     queue_capacity: int | Mapping[str, int] = 4
+    drop_stale_frames: bool = False
     pixel_format: PixelFormat = PixelFormat.NV12
     dimensions: tuple[int, int] | None = None
     error_policy: ErrorPolicy = ErrorPolicy.STOP
